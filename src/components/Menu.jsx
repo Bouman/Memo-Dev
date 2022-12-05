@@ -9,8 +9,12 @@ function Menu() {
   return (
     <ul>
       { menuOrder && menuOrder.map((item, index) => 
-          <li key={index}>
-            <a>{item.icon} {item.name}</a>
+          <li key={item.name} style={{height: `${menuOrder.length}%`}}>
+              <a>{<item.icon />} {item.name}</a>
+              <ul>
+                <li key={item.sous_menu.name} style={{height: `${menuOrder[index].sous_menu.length}%`}}>
+                </li>
+              </ul>
           </li>
         )
       }

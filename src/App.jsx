@@ -10,7 +10,6 @@ function App() {
           <Menu />
       </div>
       <div className="Content">
-
       </div>
       <footer className="Footer">֍ ~ Fait avec Amour par la Promo Sept.2022 de la Wild-Code-School de Toulouse ~ ֍</footer>
     </div>
