@@ -1,13 +1,20 @@
-import { FaReact, FaGitAlt, FaNodeJs, FaCss3Alt, FaSymfony } from 'react-icons/fa';
-import { AiOutlineConsoleSql } from "react-icons/ai";
 
 export const DataMenu = [ 
     {
-        name: "REACT", 
+        name: "REGEX",
         icon: FaReact,
         sous_menu:[          
             {
-                name: "useEffect",
+                name: "Commandes",
+            },
+        ]
+    },
+    {
+        name: "REACT", 
+        icon: FaReact,
+        sous_menu:[
+            {
+                name: "UseEffect",
             },
             {
                 name: "React Router",
@@ -25,7 +32,7 @@ export const DataMenu = [
         icon: FaGitAlt,
         sous_menu:[          
             {
-                name: "useEffect",
+                name: "GITOPTION",
             },
         ]
     },
@@ -34,7 +41,7 @@ export const DataMenu = [
         icon: FaNodeJs,
         sous_menu:[          
             {
-                name: "useEffect",
+                name: "NODEOPTION",
             },
         ]
     },
@@ -43,7 +50,7 @@ export const DataMenu = [
         icon: FaReact,
         sous_menu:[          
             {
-                name: "useEffect",
+                name: "EXPRESSOPTION",
             },
         ]
     },
@@ -52,7 +59,7 @@ export const DataMenu = [
         icon: FaCss3Alt,
         sous_menu:[          
             {
-                name: "useEffect",
+                name: "CSSOPTION",
             },
         ]
     },
@@ -61,7 +68,7 @@ export const DataMenu = [
         icon: AiOutlineConsoleSql,
         sous_menu:[          
             {
-                name: "useEffect",
+                name: "SQL OPTION",
             },
         ]
     },
@@ -70,7 +77,7 @@ export const DataMenu = [
         icon: FaSymfony,
         sous_menu:[          
             {
-                name: "useEffect",
+                name: "symfony",
             },
         ]
     }

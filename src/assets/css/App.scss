@@ -31,12 +31,18 @@
   flex-wrap: nowrap;
 }
 .Menu {  
-  grid-area: Menu; 
+  grid-area: Menu;
+  position: relative;
   background-color: coral;
   font-family: 'Orbitron', sans-serif;
   display: flex;
   justify-content: center;
   align-items: flex-start;
+  * {
+    background-color: coral;
+  }
+  outline: none;
+  cursor: pointer;
 }
 
 .Content {
