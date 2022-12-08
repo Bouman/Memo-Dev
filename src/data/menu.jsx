@@ -1,3 +1,5 @@
+import { FaReact, FaGitAlt, FaNodeJs, FaCss3Alt, FaSymfony } from 'react-icons/fa';
+import { AiOutlineConsoleSql } from "react-icons/ai";
 
 export const DataMenu = [ 
     {

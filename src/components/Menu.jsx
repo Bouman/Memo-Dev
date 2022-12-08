@@ -50,7 +50,7 @@ function Menu() {
     localStorage.setItem("Menu", JSON.stringify(copyListItems, (key, val) => {
         if (typeof val === 'function') {
           return ((JSON.stringify(val.toString().match(/(?:^|(?<=function ))([a-zA-Z]+)(?:$|(?=\())/g))).replace('["', '')).replace('"]', '')
-        }
+         }
       return val;
     }));
     setMenuOrder(copyListItems);
