@@ -12,10 +12,7 @@ function App() {
 const [contentLoad, setContentLoad] = useState("enterprise");
 const [menuOrder, setMenuOrder] = useState(JSON.parse(localStorage.getItem('Menu'), (k, v) => {
   return v;
-}) || DataMenu);
-
-console.log(`Sur App`)
-console.log(menuOrder)
+}) || Object.keys(DataMenu));
 
   return (
     <>

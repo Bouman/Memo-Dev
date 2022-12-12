@@ -2,7 +2,7 @@ import React from 'react';
 import { useState, useRef } from 'react';
 import './../assets/css/Menu.scss'
 import MainContext from '../contexts/MainContext';
-import { iconMap } from '../data/menu';
+import { DataMenu } from '../data/menu';
 
 function Menu() {
   const dragItem = useRef();
@@ -55,28 +55,26 @@ function Menu() {
     setMenuOrder(copyListItems);
   };
 
-  console.log(`Sur Menu`)
-  console.log(menuOrder)
-  let icon = iconMap[1];
-
+let NewIcon;
 return (
     <ul>
-      {menuOrder && menuOrder.map((menu, index) => 
+      {menuOrder && DataMenu && menuOrder.map((menu, index) =>
           <li key={index}
               style={{height: `${menuOrder.length}%`}}>
-              <button 
-              onClick={(e) => handleToggle(menu.name, e)} 
+              <button
+              onClick={(e) => handleToggle(DataMenu[menu].name, e)}
               className="dropbtn"
               onDragStart={(e) => dragStart(e, index)}
               onDragEnter={(e) => dragEnter(e, index)}
               onDragEnd={drop}
               onDragOver={(e) => e.preventDefault()}
               draggable>
-                {icon = iconMap[menu.icon] || null}
-                {menu.name}
+                {NewIcon = DataMenu[menu].icon}
+                <NewIcon />
+                {DataMenu[menu].name}
               </button>
-                <ul id="myDropdown" className={isDrop === menu.name ? `dropdown-content ${menu.name} show` : `dropdown-content ${menu.name}`}>
-                  { menuOrder[index].sous_menu.map((submenu) =>
+                <ul id="myDropdown" className={isDrop === DataMenu[menu].name ? `dropdown-content ${DataMenu[menu].name} show` : `dropdown-content ${DataMenu[menu].name}`}>
+                  { DataMenu[menu].sous_menu.map((submenu) =>
                       <li key={submenu.name} style={{height: `${submenu.length}%`}}>
                         <button >{submenu.name}</button>
                       </li>
