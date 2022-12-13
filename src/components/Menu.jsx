@@ -1,5 +1,4 @@
-import React from 'react';
-import { useState, useRef } from 'react';
+import { useState, useContext, useRef } from 'react';
 import './../assets/css/Menu.scss'
 import MainContext from '../contexts/MainContext';
 import { DataMenu } from '../data/menu';
@@ -8,8 +7,8 @@ function Menu() {
   const dragItem = useRef();
   const dragOverItem = useRef();
   const [isDrop, setIsDrop] = useState("");
-  const { menuOrder, setMenuOrder } = React.useContext(MainContext);
-  const { contentLoad, setContentLoad } = React.useContext(MainContext);
+  const { menuOrder, setMenuOrder } = useContext(MainContext);
+  const { contentLoad, setContentLoad, subMenuLoad, setSubMenuLoad} = useContext(MainContext);
   
   // Menu Handle
   const handleToggle = (menuname) => {
@@ -55,28 +54,43 @@ function Menu() {
     setMenuOrder(copyListItems);
   };
 
+const LoadMenu = (menu) => {
+    setContentLoad(menu);
+    setSubMenuLoad(null);
+}
+const LoadMenuAndSub = (menu, submenu) => {
+  setContentLoad(menu);
+  setSubMenuLoad(submenu);
+}
+
 let NewIcon;
+const loadicon = (menu) => {
+  NewIcon = DataMenu[menu].icon;
+  return <NewIcon />;
+}
+
 return (
     <ul>
       {menuOrder && DataMenu && menuOrder.map((menu, index) =>
           <li key={index}
               style={{height: `${menuOrder.length}%`}}>
               <button
-              onClick={(e) => handleToggle(DataMenu[menu].name, e)}
+              onMouseEnter={(e) => handleToggle(DataMenu[menu].name, e)}
+              onClick={() => LoadMenu(DataMenu[menu].name)}
               className="dropbtn"
               onDragStart={(e) => dragStart(e, index)}
               onDragEnter={(e) => dragEnter(e, index)}
               onDragEnd={drop}
               onDragOver={(e) => e.preventDefault()}
               draggable>
-                {NewIcon = DataMenu[menu].icon}
-                <NewIcon />
+                
+                {loadicon(menu)}
                 {DataMenu[menu].name}
               </button>
                 <ul id="myDropdown" className={isDrop === DataMenu[menu].name ? `dropdown-content ${DataMenu[menu].name} show` : `dropdown-content ${DataMenu[menu].name}`}>
                   { DataMenu[menu].sous_menu.map((submenu) =>
                       <li key={submenu.name} style={{height: `${submenu.length}%`}}>
-                        <button >{submenu.name}</button>
+                        <button onClick={() => LoadMenuAndSub(DataMenu[menu].name, submenu.name)} >{submenu.name}</button>
                       </li>
                   )}
                 </ul>

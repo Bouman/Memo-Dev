@@ -3,7 +3,7 @@ import { AiOutlineConsoleSql } from "react-icons/ai";
 
 export const DataMenu = [ 
     {
-        name: "REGEX",
+        name: "Regex",
         icon: FaReact,
         sous_menu:[          
             {
@@ -12,7 +12,7 @@ export const DataMenu = [
         ]
     },
     {
-        name: "REACT", 
+        name: "React", 
         icon: FaReact,
         sous_menu:[
             {
