@@ -2,8 +2,7 @@ import React from 'react';
 import { useState, useRef } from 'react';
 import './../assets/css/Menu.scss'
 import MainContext from '../contexts/MainContext';
-import { FaReact, FaGitAlt, FaNodeJs, FaCss3Alt, FaSymfony } from 'react-icons/fa';
-import { AiOutlineConsoleSql } from "react-icons/ai";
+import { DataMenu } from '../data/menu';
 
 function Menu() {
   const dragItem = useRef();
@@ -11,7 +10,7 @@ function Menu() {
   const [isDrop, setIsDrop] = useState("");
   const { menuOrder, setMenuOrder } = React.useContext(MainContext);
   const { contentLoad, setContentLoad } = React.useContext(MainContext);
-
+  
   // Menu Handle
   const handleToggle = (menuname) => {
     setIsDrop(menuname);
@@ -48,33 +47,36 @@ function Menu() {
     dragItem.current = null;
     dragOverItem.current = null;
     localStorage.setItem("Menu", JSON.stringify(copyListItems, (key, val) => {
-        if (typeof val === 'function') {
-          return ((JSON.stringify(val.toString().match(/(?:^|(?<=function ))([a-zA-Z]+)(?:$|(?=\())/g))).replace('["', '')).replace('"]', '')
-         }
+        // if (typeof val === 'function') {
+        //   return ((JSON.stringify(val.toString().match(/(?:^|(?<=function ))([a-zA-Z]+)(?:$|(?=\())/g))).replace('["', '')).replace('"]', '')
+        // }
       return val;
     }));
     setMenuOrder(copyListItems);
   };
 
+let NewIcon;
 return (
     <ul>
-      {menuOrder && menuOrder.map((menu, index) => 
+      {menuOrder && DataMenu && menuOrder.map((menu, index) =>
           <li key={index}
               style={{height: `${menuOrder.length}%`}}>
-              <button 
-              onClick={(e) => handleToggle(menu.name, e)} 
+              <button
+              onClick={(e) => handleToggle(DataMenu[menu].name, e)}
               className="dropbtn"
               onDragStart={(e) => dragStart(e, index)}
               onDragEnter={(e) => dragEnter(e, index)}
               onDragEnd={drop}
               onDragOver={(e) => e.preventDefault()}
               draggable>
-                {<menu.icon />}{menu.name}
+                {NewIcon = DataMenu[menu].icon}
+                <NewIcon />
+                {DataMenu[menu].name}
               </button>
-                <ul id="myDropdown" className={isDrop === menu.name ? `dropdown-content ${menu.name} show` : `dropdown-content ${menu.name}`}>
-                  { menuOrder[index].sous_menu.map((submenu) =>
+                <ul id="myDropdown" className={isDrop === DataMenu[menu].name ? `dropdown-content ${DataMenu[menu].name} show` : `dropdown-content ${DataMenu[menu].name}`}>
+                  { DataMenu[menu].sous_menu.map((submenu) =>
                       <li key={submenu.name} style={{height: `${submenu.length}%`}}>
-                        <button onClick={setContentLoad(submenu.name)}>{submenu.name}</button>
+                        <button >{submenu.name}</button>
                       </li>
                   )}
                 </ul>

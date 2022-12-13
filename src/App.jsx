@@ -3,8 +3,7 @@ import './assets/css/App.scss'
 import Menu from './components/Menu'
 import MainContext from './contexts/MainContext'
 import { DataMenu } from './data/menu'
-import { FaReact, FaGitAlt, FaNodeJs, FaCss3Alt, FaSymfony } from 'react-icons/fa';
-import { AiOutlineConsoleSql } from "react-icons/ai";
+
 /// PAGES
 import Home from './pages/Home.jsx'
 import UseEffect from './pages/UseEffect'
@@ -12,11 +11,8 @@ import UseEffect from './pages/UseEffect'
 function App() {
 const [contentLoad, setContentLoad] = useState("enterprise");
 const [menuOrder, setMenuOrder] = useState(JSON.parse(localStorage.getItem('Menu'), (k, v) => {
-  if (k === "icon") {
-    return v.replace('"', '')
-  }
   return v;
-}) || DataMenu);
+}) || Object.keys(DataMenu));
 
   return (
     <>

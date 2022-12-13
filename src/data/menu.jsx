@@ -52,7 +52,10 @@ export const DataMenu = [
         icon: FaReact,
         sous_menu:[          
             {
-                name: "EXPRESSOPTION",
+                name: "Express Serveur",
+            },
+            {
+                name: "Express (GET,POST...)",
             },
         ]
     },
